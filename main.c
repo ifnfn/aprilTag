@@ -71,7 +71,7 @@ uint64_t detector(char* filename)
 int main(int argc, char** argv)
 {
     struct quick_decode_entry entry;
-    int64_t t2, t1, t0;
+    int64_t t3, t2, t1, t0;
     int i;
 
     t0 = utime_now();
@@ -84,6 +84,7 @@ int main(int argc, char** argv)
 
     for (i = 0; i < 10; i++) {
         t1 = utime_now();
+        t3 = utime_now();
         uint64_t v = detector(argv[1]);
         t2 = utime_now();
         printf("decode image time %8.3f ms\n", utime_get_useconds(t2 - t1) / 1000.0);
@@ -94,6 +95,7 @@ int main(int argc, char** argv)
         printf("codeword time     %8.3f ms\n", utime_get_useconds(t2 - t1) / 1000.0);
 
         printf("rcode=%llx, id=%u, hamming=%d, rotation=%d, time %8.3f ms\n",
-            entry.rcode, entry.id, entry.hamming, entry.rotation, utime_get_useconds(t2 - t0) / 1000.0);
+            entry.rcode, entry.id, entry.hamming, entry.rotation, utime_get_useconds(t2 - t3) / 1000.0);
     }
+    printf("all time          %8.3f ms\n", utime_get_useconds(t2 - t0) / 1000.0);
 }
