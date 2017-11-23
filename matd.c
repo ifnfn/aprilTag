@@ -426,6 +426,7 @@ matd_t* matd_reduce(matd_t* m, int dim, int thresh, int num)
 
     for (int x = 0; x < t->nrows; x++) {
         for (int y = 0; y < t->ncols; y++) {
+            // printf("%d = %d\n", MATD_EL(t, x, y), num);
             if (MATD_EL(t, x, y) >= num) {
                 MATD_EL(t, x, y) = 1;
             } else {
